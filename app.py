@@ -167,12 +167,12 @@ def inquiry_anggota(id):
             db = connection.get_db()
             curr = db.cursor()
             sql_inquiry = (
-                        "select `id_anggota`, `nama_anggota`, `ktp`, `alamat`, `telepon`, `simpanan_wajib`, `simpanan_pokok`, `simpanan_suka`, `saldo`, `insert_by`, `edit_by`, `tanggal_registrasi`, `tanggal_modifikasi` from `db_koperasi`.`tb_anggota` where 1=1")
+                        "select `id_anggota`, `nama_anggota`, `ktp`, `alamat`, `telepon`, `simpanan_wajib`, `simpanan_pokok`, `simpanan_suka`,  `simpanan_wajib`  + `simpanan_pokok` + `simpanan_suka` as `saldo`, `insert_by`, `edit_by`, `tanggal_registrasi`, `tanggal_modifikasi` from `db_koperasi`.`tb_anggota` where 1=1")
             if (id_anggota == 'UTI/AGT0000'):
                 sql_inquiry = sql_inquiry + " and flag_active = 't';"
             else:
                 sql_inquiry = sql_inquiry + " and id_anggota = '%s';" % id_anggota
-            print sql_inquiry
+            print (sql_inquiry)
             curr.execute(sql_inquiry)
             rs = curr.fetchall()
             res_data['response'] = 'OK'
@@ -215,7 +215,7 @@ def modify_anggota():
                     return json.dumps(res_data)
 
             q_modify = ("UPDATE `db_koperasi`.`tb_anggota` SET `nama_anggota` = '"+nama_anggota+"', `alamat` = '"+alamat+"', `telepon` = '"+telepon+"', `edit_by` = '"+edit_by+"', `ktp` = '"+ktp+"', `tanggal_modifikasi` = '"+tanggal_modifikasi+"' WHERE `id_anggota` = '"+id_anggota+"';")
-            print q_modify
+            print (q_modify)
             curr.execute(q_modify)
             db.commit()
             res_data['response'] = 'OK'
@@ -226,7 +226,7 @@ def modify_anggota():
 @app.route('/delete_anggota', methods=["POST","GET"])
 def delete_anggota():
         res_data = {}
-        print request.json
+        print (request.json)
         if request.method == 'GET':
             return api_version
         else:
@@ -240,7 +240,7 @@ def delete_anggota():
             curr = db.cursor()
 
             q_modify = ("UPDATE `db_koperasi`.`tb_anggota` set `flag_active` = 'f' WHERE `id_anggota` = '"+id_anggota+"';")
-            print q_modify
+            print (q_modify)
             curr.execute(q_modify)
             db.commit()
             res_data['response'] = 'OK'
@@ -274,15 +274,14 @@ def get_idtransaksi_setoran():
             db.close()
             return json.dumps(res_data)
 
-
 @app.route('/inquiry_setoran', methods=["GET",])
 def inquiry_setoran():
         res_data = {}
         if request.method == 'GET':
             db = connection.get_db()
             curr = db.cursor()
-            sql_inquiry = ("select `id_transaksi`, `id_anggota`, `nama_anggota`, `jenis_simpanan`, `nominal`, `saldo`, `insert_date`, `insert_by` from `tb_setoran` order by `id_transaksi`")
-            print sql_inquiry
+            sql_inquiry = ("select `id_transaksi`, `id_anggota`, `nama_anggota`, `jenis_simpanan`, `nominal`, `saldo`, `insert_date`, `insert_by` from `tb_setoran` order by cast(replace(`id_transaksi`,'UTI/SETOR000','') as UNSIGNED)")
+            print (sql_inquiry)
             curr.execute(sql_inquiry)
             rs = curr.fetchall()
             res_data['response'] = 'OK'
@@ -313,35 +312,100 @@ def modify_setoran():
             curr = db.cursor()
 
             q_is_exist = (
-                    "select `id_anggota`, `nama_anggota`, `simpanan_wajib`, `simpanan_pokok`, `simpanan_suka`, `saldo`, `edit_by`, `tanggal_modifikasi` from `db_koperasi`.`tb_anggota` where 1=1 and `id_anggota` = '"+id_anggota+"' and `flag_active` = 't';")
+                    "select `id_anggota`, `nama_anggota`, `simpanan_wajib`, `simpanan_pokok`, `simpanan_suka`, `simpanan_wajib`  + `simpanan_pokok`  + `simpanan_suka` as `saldo`, `edit_by`, `tanggal_modifikasi` from `db_koperasi`.`tb_anggota` where 1=1 and `id_anggota` = '"+id_anggota+"' and `flag_active` = 't';")
             curr.execute(q_is_exist)
             rs = curr.fetchall()
-            simpanan_wajib = rs[0][2]
-            simpanan_pokok = rs[0][3]
-            simpanan_suka = rs[0][4]
-            saldo = rs[0][5]
+            simpanan_wajib = str(rs[0][2])
+            simpanan_pokok = str(rs[0][3])
+            simpanan_suka = str(rs[0][4])
+            saldo = str(rs[0][5])
             nama_anggota = rs[0][1]
-            lb_setoran = ""
             if jenis_simpanan == "simpanan_suka":
-                lb_setoran = simpanan_suka = str(int(simpanan_suka) + int(nominal))
+                simpanan_suka = str(int(simpanan_suka) + int(nominal))
             if jenis_simpanan == "simpanan_pokok" :
-                lb_setoran = simpanan_pokok = str(int(simpanan_pokok) + int(nominal))
+                simpanan_pokok = str(int(simpanan_pokok) + int(nominal))
             if jenis_simpanan == "simpanan_wajib" :
-                lb_setoran = simpanan_wajib = str(int(simpanan_wajib)+int(nominal))
-            if jenis_simpanan == "saldo" :
-                lb_setoran = saldo = str(int(saldo) + int(nominal))
+                simpanan_wajib = str(int(simpanan_wajib)+int(nominal))
+            lb_setoran = str(int(saldo) + int(nominal))
 
-            q_modify = ("UPDATE `db_koperasi`.`tb_anggota` SET `simpanan_wajib` = '"+simpanan_wajib+"', `simpanan_pokok` = '"+simpanan_pokok+"', `simpanan_suka` = '"+simpanan_suka+"', `saldo` = '"+saldo+"', `edit_by` = '"+edit_by+"', `tanggal_modifikasi` = '"+tanggal_modifikasi+"' WHERE `id_anggota` = '"+id_anggota+"';")
-            print q_modify
+            print (type(id_anggota))
+            print (type(simpanan_suka))
+            print (type(simpanan_wajib))
+            print (type(simpanan_pokok))
+            print (type(saldo))
+
+            q_modify = ("UPDATE `db_koperasi`.`tb_anggota` SET `simpanan_wajib` = '"+simpanan_wajib+"', `simpanan_pokok` = '"+simpanan_pokok+"', `simpanan_suka` = '"+simpanan_suka+"', `edit_by` = '"+edit_by+"', `tanggal_modifikasi` = '"+tanggal_modifikasi+"' WHERE `id_anggota` = '"+id_anggota+"';")
+            print (q_modify)
             curr.execute(q_modify)
 
             q_insert_tb_setoran = ("INSERT INTO `db_koperasi`.`tb_setoran` ( `id_transaksi`, `id_anggota`, `nama_anggota`, `jenis_simpanan`, `nominal`, `saldo`, `insert_date`, `insert_by` ) VALUES ( '"+id_transaksi+"', '"+id_anggota+"', '"+nama_anggota+"', '"+jenis_simpanan+"', '"+nominal+"', '"+lb_setoran+"', '"+tanggal_modifikasi+"', '"+edit_by+"' );")
-            print q_modify
+            print (q_modify)
             curr.execute(q_insert_tb_setoran)
             db.commit()
             res_data['response'] = 'OK'
             res_data['msg'] = 'Saldo Berhasil diUpdate'
         return json.dumps(res_data)
+
+
+# PINJAMAN
+
+@app.route('/get_id_transaksi_pinjaman', methods=["GET",])
+def get_idtransaksi_pinjaman():
+        res_data = {}
+        if request.method == 'GET':
+            db = connection.get_db()
+            curr = db.cursor()
+            q_is_exist = (
+                        "SELECT count(id_kredit) as jumlah FROM `tb_kredit`;")
+            curr.execute(q_is_exist)
+            rs = curr.fetchall()
+            jumlah_row = rs[0][0]
+            res_data['response'] = 'OK'
+            res_data['msg'] = 'UTI/KREDIT000'+str(jumlah_row+1)
+
+            q_is_exist = (
+                "SELECT id_anggota, nama_anggota FROM `tb_anggota` where `flag_active`='t' order by nama_anggota;")
+            curr.execute(q_is_exist)
+            rs = curr.fetchall()
+            res_data['anggota_arr'] = rs
+            db.close()
+            return json.dumps(res_data)
+
+@app.route('/register_pinjaman', methods=["POST","GET"])
+def register_pinjaman():
+        res_data = {}
+        if request.method == 'GET':
+            return api_version
+        else:
+            if not request.json:
+                abort(400)
+            data = request.json
+            id_transaksi = str(data['id_transaksi'])
+            id_anggota = str(data['id_anggota'])
+            jumlah_pinjaman = str(data['jumlah_pinjaman'])
+            bunga = str(data['bunga'])
+            tenor = str(data['tenor'])
+            angsuran_perbulan = str(data['angsuran_perbulan'])
+            flag_active = 't'
+            insert_date = str(data['insert_date'])
+            insert_by = str(data['insert_by'])
+
+            app.logger.info("input :" + str(data))
+            db = connection.get_db()
+            curr = db.cursor()
+
+            q_insert_tb_kredit = ("INSERT INTO `db_koperasi`.`tb_kredit` ( `id_kredit`, `id_anggota`, `jumlah_pinjaman`, `bunga`, `lama_cicilan`, `angsuran`, `flag_active`, `insert_date`, `insert_by` ) VALUES ( '"+id_transaksi+"', '"+id_anggota+"', '"+jumlah_pinjaman+"', '"+bunga+"', '"+tenor+"', '"+angsuran_perbulan+"', '"+flag_active+"', '"+insert_date+"', '"+insert_by+"');")
+            print (q_insert_tb_kredit)
+            curr.execute(q_insert_tb_kredit)
+            db.commit()
+            res_data['response'] = 'OK'
+            res_data['msg'] = 'Pinjaman berhasil diajukan'
+        return json.dumps(res_data)
+
+
+
+
+
 
 if __name__ == '__main__':
     handler = RotatingFileHandler('API_KOPERASI.log', maxBytes=10000, backupCount=1)
