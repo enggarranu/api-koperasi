@@ -383,11 +383,11 @@ def register_pinjaman():
             id_transaksi = str(data['id_transaksi'])
             id_anggota = str(data['id_anggota'])
             jumlah_pinjaman = str(data['jumlah_pinjaman'])
-            bunga = str(data['bunga'])
+            bunga = str(data['bunga_pertahun'])
             tenor = str(data['tenor'])
             angsuran_perbulan = str(data['angsuran_perbulan'])
             flag_active = 't'
-            insert_date = str(data['insert_date'])
+            insert_date = str(data['tanggal_setoran'])
             insert_by = str(data['insert_by'])
 
             app.logger.info("input :" + str(data))
@@ -402,8 +402,64 @@ def register_pinjaman():
             res_data['msg'] = 'Pinjaman berhasil diajukan'
         return json.dumps(res_data)
 
+@app.route('/inquiry_pinjaman', methods=["GET",])
+def inquiry_pinjaman():
+        res_data = {}
+        if request.method == 'GET':
+            db = connection.get_db()
+            curr = db.cursor()
+            sql_inquiry = ("SELECT a.id_kredit, a. id_anggota, b.nama_anggota, b.saldo, a.jumlah_pinjaman, a.bunga, a.lama_cicilan, a.angsuran, a.insert_date, a.insert_by FROM tb_kredit a JOIN ( SELECT id_anggota, nama_anggota, cast( simpanan_wajib AS SIGNED ) + cast( simpanan_suka AS SIGNED ) + cast( simpanan_pokok AS SIGNED ) saldo FROM tb_anggota ) b ON a.id_anggota = b.id_anggota")
+            print (sql_inquiry)
+            curr.execute(sql_inquiry)
+            rs = curr.fetchall()
+            res_data['response'] = 'OK'
+            res_data['anggota'] = rs
+            res_data['len_data'] = len(rs)
+            db.close()
+            return json.dumps(res_data)
 
+#pengambilan
+@app.route('/get_id_transaksi_pengambilan_pinjaman', methods=["GET",])
+def get_id_transaksi_pengambilan_pinjaman():
+        res_data = {}
+        if request.method == 'GET':
+            db = connection.get_db()
+            curr = db.cursor()
+            q_is_exist = (
+                        "SELECT count(id_pengambilan) as jumlah FROM `tb_kredit`;")
+            curr.execute(q_is_exist)
+            rs = curr.fetchall()
+            jumlah_row = rs[0][0]
+            res_data['response'] = 'OK'
+            res_data['msg'] = 'UTI/PBL000'+str(jumlah_row+1)
 
+            q_is_exist = (
+                "SELECT tb_kredit.id_anggota, tb_anggota.nama_anggota, tb_kredit.jumlah_pinjaman FROM `tb_anggota` join `tb_kredit` on tb_anggota.id_anggota = tb_kredit.id_anggota  where tb_kredit.`flag_active`='t' order by nama_anggota;")
+            curr.execute(q_is_exist)
+            rs = curr.fetchall()
+            res_data['anggota_arr'] = rs
+            db.close()
+            return json.dumps(res_data)
+
+@app.route('/get_detail_pinjaman/UTI/<id_anggota>', methods=["GET",])
+def get_detail_pinjaman(id_anggota):
+        res_data = {}
+        if request.method == 'GET':
+            id_anggota_ = "UTI/"+id_anggota
+            db = connection.get_db()
+            curr = db.cursor()
+            q_is_exist = (
+                "SELECT tb_kredit.id_anggota, tb_anggota.nama_anggota, tb_kredit.jumlah_pinjaman, (simpanan_suka+simpanan_pokok+simpanan_wajib) as saldo, id_kredit FROM `tb_anggota` join `tb_kredit` on tb_anggota.id_anggota = tb_kredit.id_anggota  where tb_kredit.`flag_active`='t' and tb_kredit.id_anggota = '"+id_anggota_+"' order by nama_anggota;")
+            curr.execute(q_is_exist)
+            rs = curr.fetchall()
+            res_data['id_anggota'] = rs[0][0]
+            res_data['nama_anggota'] = rs[0][1]
+            res_data['jumlah_pinjaman'] = rs[0][2]
+            res_data['saldo'] = rs[0][3]
+            res_data['id_kredit'] = rs[0][4]
+            res_data['response'] = 'OK'
+            db.close()
+            return json.dumps(res_data)
 
 
 
