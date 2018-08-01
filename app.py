@@ -1,11 +1,9 @@
 import datetime
 import hashlib
 
-import psycopg2
 from flask import Flask, request, abort, json
 from flask_cors import CORS
 import connection
-import MySQLdb
 import logging
 from logging.handlers import RotatingFileHandler
 
