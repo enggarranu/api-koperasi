@@ -511,8 +511,6 @@ if __name__ == '__main__':
     handler = RotatingFileHandler('/var/log/api-koperasi/API_KOPERASI.log', maxBytes=10000, backupCount=1)
     handler.setLevel(logging.INFO)
     app.logger.addHandler(handler)
-    try:
-        app.run(host='47.74.245.145', port=5000, threaded=True, debug=True)
-    except:
-        print("Error app")
+    app.run(host='47.74.245.145', port=5000, threaded=True, debug=True)
+
     # app.run(host='127.0.0.1', port=5000, threaded=True, debug=True)
