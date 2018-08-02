@@ -166,7 +166,7 @@ def inquiry_anggota(id):
             db = connection.get_db()
             curr = db.cursor()
             sql_inquiry = (
-                        "select `id_anggota`, `nama_anggota`, `ktp`, `alamat`, `telepon`, `simpanan_wajib`, `simpanan_pokok`, `simpanan_suka`,  `simpanan_wajib`  + `simpanan_pokok` + `simpanan_suka` as `saldo`, `insert_by`, `edit_by`, `tanggal_registrasi`, `tanggal_modifikasi` from `db_koperasi`.`tb_anggota` where 1=1")
+                        "select `id_anggota`, `nama_anggota`, `ktp`, `alamat`, `telepon`, concat('Rp ',format(`simpanan_wajib`,2)), concat('Rp ',format(`simpanan_pokok`,2)), concat('Rp ',format(`simpanan_suka`,2)),  concat('Rp ',format(`simpanan_wajib`  + `simpanan_pokok` + `simpanan_suka`,2)) as `saldo`, `insert_by`, `edit_by`, `tanggal_registrasi`, `tanggal_modifikasi` from `db_koperasi`.`tb_anggota` where 1=1")
             if (id_anggota == 'UTI/AGT0000'):
                 sql_inquiry = sql_inquiry + " and flag_active = 't';"
             else:
@@ -279,7 +279,7 @@ def inquiry_setoran():
         if request.method == 'GET':
             db = connection.get_db()
             curr = db.cursor()
-            sql_inquiry = ("select `id_transaksi`, `id_anggota`, `nama_anggota`, `jenis_simpanan`, `nominal`, `saldo`, `insert_date`, `insert_by` from `tb_setoran` order by cast(replace(`id_transaksi`,'UTI/SMP','') as UNSIGNED)")
+            sql_inquiry = ("select `id_transaksi`, `id_anggota`, `nama_anggota`, `jenis_simpanan`, concat('Rp ',format(`nominal`,2)), concat('Rp ', format(`saldo`,2)), `insert_date`, `insert_by` from `tb_setoran` order by cast(replace(`id_transaksi`,'UTI/SMP','') as UNSIGNED)")
             print (sql_inquiry)
             curr.execute(sql_inquiry)
             rs = curr.fetchall()
@@ -407,7 +407,7 @@ def inquiry_pinjaman():
         if request.method == 'GET':
             db = connection.get_db()
             curr = db.cursor()
-            sql_inquiry = ("SELECT a.id_kredit, a. id_anggota, b.nama_anggota, b.saldo, a.jumlah_pinjaman, a.bunga, a.lama_cicilan, a.angsuran, a.insert_date, a.insert_by FROM tb_kredit a JOIN ( SELECT id_anggota, nama_anggota, cast( simpanan_wajib AS SIGNED ) + cast( simpanan_suka AS SIGNED ) + cast( simpanan_pokok AS SIGNED ) saldo FROM tb_anggota ) b ON a.id_anggota = b.id_anggota")
+            sql_inquiry = ("SELECT a.id_kredit, a. id_anggota, b.nama_anggota, concat('Rp ', format(b.saldo,2)), concat('Rp ', format(a.jumlah_pinjaman,2)), concat(a.bunga, '%'), concat(a.lama_cicilan, ' Bulan'), concat('Rp ', format(a.angsuran,2)), a.insert_date, a.insert_by FROM tb_kredit a JOIN ( SELECT id_anggota, nama_anggota, cast( simpanan_wajib AS SIGNED ) + cast( simpanan_suka AS SIGNED ) + cast( simpanan_pokok AS SIGNED ) saldo FROM tb_anggota ) b ON a.id_anggota = b.id_anggota")
             print (sql_inquiry)
             curr.execute(sql_inquiry)
             rs = curr.fetchall()
@@ -448,7 +448,7 @@ def get_detail_pinjaman(id_anggota):
             db = connection.get_db()
             curr = db.cursor()
             q_is_exist = (
-                "SELECT tb_kredit.id_anggota, tb_anggota.nama_anggota, tb_kredit.jumlah_pinjaman, (simpanan_suka+simpanan_pokok+simpanan_wajib) as saldo, id_kredit FROM `tb_anggota` join `tb_kredit` on tb_anggota.id_anggota = tb_kredit.id_anggota  where tb_kredit.`flag_active`='t' and tb_kredit.id_anggota = '"+id_anggota_+"' order by nama_anggota;")
+                "SELECT tb_kredit.id_anggota, tb_anggota.nama_anggota, concat('Rp ', format(tb_kredit.jumlah_pinjaman,2)), concat('Rp ', format((simpanan_suka+simpanan_pokok+simpanan_wajib),2)) as saldo, id_kredit FROM `tb_anggota` join `tb_kredit` on tb_anggota.id_anggota = tb_kredit.id_anggota  where tb_kredit.`flag_active`='t' and tb_kredit.id_anggota = '"+id_anggota_+"' order by nama_anggota;")
             curr.execute(q_is_exist)
             rs = curr.fetchall()
             res_data['id_anggota'] = rs[0][0]
@@ -497,7 +497,7 @@ def inquiry_pengambilan():
         if request.method == 'GET':
             db = connection.get_db()
             curr = db.cursor()
-            sql_inquiry = ("select a.`id_transaksi_pengambilan`, a.`id_transaksi_peminjaman`, a.`tanggal_pengambilan`, a.`id_anggota`, b.`nama_anggota`,c.`jumlah_pinjaman`, a.`insert_by` from `db_koperasi`.`tb_pengambilan` a join tb_anggota b on a.id_anggota = b.id_anggota join tb_kredit c on a.`id_transaksi_peminjaman` = c.id_kredit ORDER BY a.tanggal_pengambilan")
+            sql_inquiry = ("select a.`id_transaksi_pengambilan`, a.`id_transaksi_peminjaman`, a.`tanggal_pengambilan`, a.`id_anggota`, b.`nama_anggota`,concat('Rp ',format(c.`jumlah_pinjaman`,2)), a.`insert_by` from `db_koperasi`.`tb_pengambilan` a join tb_anggota b on a.id_anggota = b.id_anggota join tb_kredit c on a.`id_transaksi_peminjaman` = c.id_kredit ORDER BY a.tanggal_pengambilan")
             print (sql_inquiry)
             curr.execute(sql_inquiry)
             rs = curr.fetchall()

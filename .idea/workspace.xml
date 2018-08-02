@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09e54981-a4e3-4b7f-ba46-2c08189af741" name="Default" comment="optimize Import">
+    <list default="true" id="09e54981-a4e3-4b7f-ba46-2c08189af741" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
@@ -24,8 +24,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="281" column="209" selection-start-line="281" selection-start-column="209" selection-end-line="281" selection-end-column="209" />
+            <state relative-caret-position="412">
+              <caret line="499" column="193" selection-start-line="499" selection-start-column="193" selection-end-line="499" selection-end-column="193" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -328,7 +328,21 @@
       <option name="project" value="LOCAL" />
       <updated>1533126914984</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Fix Warning">
+      <created>1533197993817</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1533197993817</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Fix Warning">
+      <created>1533199341387</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1533199341387</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -341,8 +355,8 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" x="859" y="62" width="1146" height="796" id="Run" order="2" sideWeight="0.49946696" weight="0.48789346" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49514562" visible="true" weight="0.39709443" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19056047" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49514562" weight="0.39709443" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.19056047" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="R Graphics" order="3" />
@@ -360,29 +374,29 @@
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" weight="0.3297414" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19056047" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" x="859" y="62" width="1146" height="796" id="Run" order="2" sideWeight="0.49946696" weight="0.48789346" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.6468447" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="R Graphics" order="4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="R Packages" order="5" />
-      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" x="859" y="62" width="1146" height="796" id="Run" order="2" sideWeight="0.49946696" weight="0.48789346" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" weight="0.3297414" />
+      <window_info anchor="right" id="R Packages" order="5" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49514562" visible="true" weight="0.39709443" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49514562" visible="true" weight="0.39709443" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5048544" side_tool="true" weight="0.39364302" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="bottom" id="Python Console" order="12" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -397,7 +411,8 @@
     <MESSAGE value="update connection" />
     <MESSAGE value="optimize log location" />
     <MESSAGE value="optimize Import" />
-    <option name="LAST_COMMIT_MESSAGE" value="optimize Import" />
+    <MESSAGE value="Fix Warning" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix Warning" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -774,8 +789,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="281" column="209" selection-start-line="281" selection-start-column="209" selection-end-line="281" selection-end-column="209" />
+        <state relative-caret-position="412">
+          <caret line="499" column="193" selection-start-line="499" selection-start-column="193" selection-end-line="499" selection-end-column="193" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
