@@ -497,7 +497,7 @@ def inquiry_pengambilan():
         if request.method == 'GET':
             db = connection.get_db()
             curr = db.cursor()
-            sql_inquiry = ("select a.`id_transaksi_pengambilan`, a.`id_transaksi_peminjaman`, a.`tanggal_pengambilan`, a.`id_anggota`, b.`nama_anggota`, a.`insert_by` from `db_koperasi`.`tb_pengambilan` a join tb_anggota b on a.id_anggota = b.id_anggota ORDER BY a.tanggal_pengambilan")
+            sql_inquiry = ("select a.`id_transaksi_pengambilan`, a.`id_transaksi_peminjaman`, a.`tanggal_pengambilan`, a.`id_anggota`, b.`nama_anggota`,c.`jumlah_pinjaman`, a.`insert_by` from `db_koperasi`.`tb_pengambilan` a join tb_anggota b on a.id_anggota = b.id_anggota join tb_kredit c on a.`id_transaksi_peminjaman` = c.id_kredit ORDER BY a.tanggal_pengambilan")
             print (sql_inquiry)
             curr.execute(sql_inquiry)
             rs = curr.fetchall()
