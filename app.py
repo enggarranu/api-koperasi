@@ -279,7 +279,7 @@ def inquiry_setoran():
         if request.method == 'GET':
             db = connection.get_db()
             curr = db.cursor()
-            sql_inquiry = ("select `id_transaksi`, `id_anggota`, `nama_anggota`, `jenis_simpanan`, `nominal`, `saldo`, `insert_date`, `insert_by` from `tb_setoran` order by cast(replace(`id_transaksi`,'UTI/SETOR000','') as UNSIGNED)")
+            sql_inquiry = ("select `id_transaksi`, `id_anggota`, `nama_anggota`, `jenis_simpanan`, `nominal`, `saldo`, `insert_date`, `insert_by` from `tb_setoran` order by cast(replace(`id_transaksi`,'UTI/SMP','') as UNSIGNED)")
             print (sql_inquiry)
             curr.execute(sql_inquiry)
             rs = curr.fetchall()
