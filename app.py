@@ -12,7 +12,7 @@ CORS(app)
 api_version = "API_KOPERASI Ver 2017.9 By Eng | (c) Copyrights Enggar 2017"
 
 # ANGGOTA
-@app.route('/register', methods=["POST","GET"])
+@app.route('/register_petugas', methods=["POST","GET"])
 def register():
     try:
         res_data = {}
@@ -27,8 +27,8 @@ def register():
             fullname = data['fullname']
             email = data['email']
             address = data['address']
-            city = data['city']
-            country = data['country']
+            jenis_role = data['jenis_role']
+            registered_by = data['registered_by']
 
             app.logger.info("input :" + str(data))
             db = connection.get_db()
@@ -42,7 +42,7 @@ def register():
                 res_data['msg'] = 'User Already Registered'
                 return json.dumps(res_data)
 
-            q_insert = ("INSERT INTO `tb_ms_login` (username, password, fullname, email, address, city, country) values ('"+username+"','"+password+"','"+fullname+"','"+email+"','"+address+"','"+city+"','"+country+"');")
+            q_insert = ("INSERT INTO `tb_ms_login` (username, password, fullname, email, address, jenis_role, registered_by) values ('"+username+"','"+password+"','"+fullname+"','"+email+"','"+address+"','"+jenis_role+"','"+registered_by+"');")
             curr.execute(q_insert)
             db.commit()
             res_data['response'] = 'OK'
