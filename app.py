@@ -11,7 +11,24 @@ app = Flask(__name__)
 CORS(app)
 api_version = "API_KOPERASI Ver 2017.9 By Eng | (c) Copyrights Enggar 2017"
 
-# ANGGOTA
+# PETUGAS DAN ANGGOTA
+@app.route('/register_petugas_get_id', methods=["GET",])
+def register_petugas_get_id():
+        res_data = {}
+        if request.method == 'GET':
+            db = connection.get_db()
+            curr = db.cursor()
+            q_is_exist = (
+                "SELECT id+1 FROM `tb_ms_login` ORDER BY id DESC limit 1;")
+            curr.execute(q_is_exist)
+            rs = curr.fetchall()
+            jumlah_row = rs[0][0]
+            res_data['response'] = 'OK'
+            res_data['msg'] = jumlah_row
+            db.close()
+            return json.dumps(res_data)
+
+
 @app.route('/register_petugas', methods=["POST","GET"])
 def register():
     try:
