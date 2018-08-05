@@ -74,6 +74,25 @@ def register():
         res_data['msg'] = str(e)
         return json.dumps(res_data)
 
+
+@app.route('/inquiry_petugas', methods=["GET",])
+def inquiry_petugas():
+        res_data = {}
+        if request.method == 'GET':
+            db = connection.get_db()
+            curr = db.cursor()
+            q_is_exist = (
+                "SELECT id, fullname, email, address, username, jenis_role, registered_by FROM `tb_ms_login` WHERE flagactive = TRUE;")
+            curr.execute(q_is_exist)
+            rs = curr.fetchall()
+            jumlah_row = rs[0][0]
+            rs = curr.fetchall()
+            res_data['response'] = 'OK'
+            res_data['petugas'] = rs
+            res_data['len_data'] = len(rs)
+            db.close()
+            return json.dumps(res_data)
+
 @app.route('/login', methods=["POST","GET"])
 def login():
     try:
