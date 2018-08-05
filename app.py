@@ -85,8 +85,6 @@ def inquiry_petugas():
                 "SELECT id, fullname, email, address, username, jenis_role, registered_by FROM `tb_ms_login` WHERE flagactive = TRUE;")
             curr.execute(q_is_exist)
             rs = curr.fetchall()
-            jumlah_row = rs[0][0]
-            rs = curr.fetchall()
             res_data['response'] = 'OK'
             res_data['petugas'] = rs
             res_data['len_data'] = len(rs)
