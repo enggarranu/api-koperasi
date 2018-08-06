@@ -165,6 +165,7 @@ def login():
             db = connection.get_db()
             curr = db.cursor()
             q_is_exist = ("SELECT fullname, username, jenis_role FROM `tb_ms_login` where username = '"+username+"' and password = '"+password+"';")
+            app.logger.info(q_is_exist)
             curr.execute(q_is_exist)
             rs = curr.fetchall()
             if len(rs) < 1:
@@ -179,7 +180,7 @@ def login():
                 res_data['msg'] = 'Success Login!!'
                 res_data['fullname'] = fullname
                 res_data['jenis_role'] =jenis_role
-                print(res_data)
+                app.logger.info(res_data)
                 return json.dumps(res_data)
     except Exception as e:
         res_data = {}

@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="09e54981-a4e3-4b7f-ba46-2c08189af741" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,8 +24,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="135" column="69" lean-forward="true" selection-start-line="135" selection-start-column="69" selection-end-line="135" selection-end-column="69" />
+            <state relative-caret-position="170">
+              <caret line="167" column="38" selection-start-line="167" selection-start-column="38" selection-end-line="167" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -388,7 +389,21 @@
       <option name="project" value="LOCAL" />
       <updated>1533542016862</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Login Management | inquiry petugas">
+      <created>1533542276448</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1533542276448</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Login Management | inquiry petugas">
+      <created>1533543251060</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1533543251060</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -794,8 +809,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="135" column="69" lean-forward="true" selection-start-line="135" selection-start-column="69" selection-end-line="135" selection-end-column="69" />
+        <state relative-caret-position="170">
+          <caret line="167" column="38" selection-start-line="167" selection-start-column="38" selection-end-line="167" selection-end-column="38" />
         </state>
       </provider>
     </entry>
