@@ -164,7 +164,7 @@ def login():
             app.logger.info("input :" + str(data))
             db = connection.get_db()
             curr = db.cursor()
-            q_is_exist = ("SELECT fullname, username FROM `tb_ms_login` where username = '"+username+"' and password = '"+password+"';")
+            q_is_exist = ("SELECT fullname, username, jenis_role FROM `tb_ms_login` where username = '"+username+"' and password = '"+password+"';")
             curr.execute(q_is_exist)
             rs = curr.fetchall()
             if len(rs) < 1:
@@ -173,10 +173,12 @@ def login():
                 return json.dumps(res_data)
             fullname = rs[0][0]
             username = rs[0][1]
+            jenis_role = rs[0][2]
             if (fullname != None or username != None) :
                 res_data['response'] = 'OK'
                 res_data['msg'] = 'Success Login!!'
                 res_data['fullname'] = fullname
+                res_data['jenis_role'] =jenis_role
                 print(res_data)
                 return json.dumps(res_data)
     except Exception as e:
