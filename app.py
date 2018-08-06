@@ -109,7 +109,7 @@ def modify_petugas():
 
             db = connection.get_db()
             curr = db.cursor()
-            q_modify = ("UPDATE `db_koperasi`.`tb_anggota` SET `fullname` = '"+nama_petugas+"', `address` = '"+alamat_petugas+"', `email` = '"+email_petugas+"', `jenis_role` = '"+jenis_role+"' WHERE `id` = '"+id_petugas+"';")
+            q_modify = ("UPDATE `db_koperasi`.`tb_ms_login` SET `fullname` = '"+nama_petugas+"', `address` = '"+alamat_petugas+"', `email` = '"+email_petugas+"', `jenis_role` = '"+jenis_role+"' WHERE `id` = '"+id_petugas+"';")
             print (q_modify)
             curr.execute(q_modify)
             db.commit()
