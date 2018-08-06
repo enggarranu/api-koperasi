@@ -91,6 +91,56 @@ def inquiry_petugas():
             db.close()
             return json.dumps(res_data)
 
+@app.route('/modify_petugas', methods=["POST","GET"])
+def modify_petugas():
+        res_data = {}
+        if request.method == 'GET':
+            return api_version
+        else:
+            if not request.json:
+                abort(400)
+            data = request.json
+            id_petugas = str(data['id_petugas'])
+            nama_petugas = str(data['nama_petugas'])
+            alamat_petugas = str(data['alamat_petugas'])
+            email_petugas = str(data['email_petugas'])
+            # edit_by = str(data['edit_by'])
+            jenis_role = str(data['jenis_role'])
+
+            db = connection.get_db()
+            curr = db.cursor()
+            q_modify = ("UPDATE `db_koperasi`.`tb_anggota` SET `fullname` = '"+nama_petugas+"', `address` = '"+alamat_petugas+"', `email` = '"+email_petugas+"', `jenis_role` = '"+jenis_role+"' WHERE `id` = '"+id_petugas+"';")
+            print (q_modify)
+            curr.execute(q_modify)
+            db.commit()
+            res_data['response'] = 'OK'
+            res_data['msg'] = 'Data Petugas Berhasil diUpdate'
+        return json.dumps(res_data)
+
+@app.route('/delete_petugas', methods=["POST","GET"])
+def delete_petugas():
+        res_data = {}
+        print (request.json)
+        if request.method == 'GET':
+            return api_version
+        else:
+            if not request.json:
+                abort(400)
+            data = request.json
+            id_petugas = str(data['id_petugas'])
+
+            app.logger.info("input :" + str(data))
+            db = connection.get_db()
+            curr = db.cursor()
+
+            q_modify = ("UPDATE `db_koperasi`.`tb_ms_login` set `flag_active` = FALSE WHERE `id` = '"+id_petugas+"';")
+            print (q_modify)
+            curr.execute(q_modify)
+            db.commit()
+            res_data['response'] = 'OK'
+            res_data['msg'] = 'Petugas Berhasil Dihapus dari sistem'
+        return json.dumps(res_data)
+
 @app.route('/login', methods=["POST","GET"])
 def login():
     try:
