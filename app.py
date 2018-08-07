@@ -449,8 +449,7 @@ def get_idtransaksi_pinjaman():
             res_data['response'] = 'OK'
             res_data['msg'] = 'UTI/PNJ'+str(datetime.datetime.today().strftime('%Y%m%d'))+str(jumlah_row+1)
 
-            q_is_exist = (
-                "SELECT id_anggota, nama_anggota FROM `tb_anggota` where `flag_active`='t' order by nama_anggota;")
+            q_is_exist = ("SELECT tb_anggota.id_anggota, tb_anggota.nama_anggota FROM `tb_anggota` where tb_anggota.`flag_active`='t' and tb_anggota.id_anggota not in (select id_anggota from tb_kredit) order by nama_anggota;")
             curr.execute(q_is_exist)
             rs = curr.fetchall()
             res_data['anggota_arr'] = rs
@@ -479,6 +478,9 @@ def register_pinjaman():
             app.logger.info("input :" + str(data))
             db = connection.get_db()
             curr = db.cursor()
+
+
+            q_check_tb_kredit =()
 
             q_insert_tb_kredit = ("INSERT INTO `db_koperasi`.`tb_kredit` ( `id_kredit`, `id_anggota`, `jumlah_pinjaman`, `bunga`, `lama_cicilan`, `angsuran`, `flag_active`, `insert_date`, `insert_by` ) VALUES ( '"+id_transaksi+"', '"+id_anggota+"', '"+jumlah_pinjaman+"', '"+bunga+"', '"+tenor+"', '"+angsuran_perbulan+"', '"+flag_active+"', '"+insert_date+"', '"+insert_by+"');")
             print (q_insert_tb_kredit)
