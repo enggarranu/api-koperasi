@@ -24,7 +24,7 @@ def register_petugas_get_id():
             rs = curr.fetchall()
             jumlah_row = rs[0][0]
             res_data['response'] = 'OK'
-            res_data['msg'] = jumlah_row
+            res_data['msg'] = "PG"+jumlah_row
             db.close()
             return json.dumps(res_data)
 
@@ -46,6 +46,7 @@ def register():
             address = data['address']
             jenis_role = data['jenis_role']
             registered_by = data['registered_by']
+            id_petugas = data['id_petugas']
 
             app.logger.info("input :" + str(data))
             db = connection.get_db()
@@ -59,7 +60,7 @@ def register():
                 res_data['msg'] = 'User Already Registered'
                 return json.dumps(res_data)
 
-            q_insert = ("INSERT INTO `tb_ms_login` (username, password, fullname, email, address, jenis_role, registered_by) values ('"+username+"','"+password+"','"+fullname+"','"+email+"','"+address+"','"+jenis_role+"','"+registered_by+"');")
+            q_insert = ("INSERT INTO `tb_ms_login` (username, password, fullname, email, address, jenis_role, registered_by, id_petugas) values ('"+username+"','"+password+"','"+fullname+"','"+email+"','"+address+"','"+jenis_role+"','"+registered_by+"','"+id_petugas+"');")
             curr.execute(q_insert)
             db.commit()
             res_data['response'] = 'OK'
