@@ -24,8 +24,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="62" column="261" lean-forward="true" selection-start-line="62" selection-start-column="261" selection-end-line="62" selection-end-column="261" />
+            <state relative-caret-position="528">
+              <caret line="85" column="34" selection-start-line="85" selection-start-column="34" selection-end-line="85" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -417,7 +417,21 @@
       <option name="project" value="LOCAL" />
       <updated>1533628905488</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Register petugas">
+      <created>1533712260117</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1533712260117</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Register petugas">
+      <created>1533712410855</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1533712410855</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -492,7 +506,8 @@
     <MESSAGE value="Login Management" />
     <MESSAGE value="Login Management | inquiry petugas" />
     <MESSAGE value="Add Validation Form peminjaman" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Validation Form peminjaman" />
+    <MESSAGE value="Register petugas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Register petugas" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -824,8 +839,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="62" column="261" lean-forward="true" selection-start-line="62" selection-start-column="261" selection-end-line="62" selection-end-column="261" />
+        <state relative-caret-position="528">
+          <caret line="85" column="34" selection-start-line="85" selection-start-column="34" selection-end-line="85" selection-end-column="34" />
         </state>
       </provider>
     </entry>

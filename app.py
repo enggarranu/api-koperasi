@@ -83,7 +83,7 @@ def inquiry_petugas():
             db = connection.get_db()
             curr = db.cursor()
             q_is_exist = (
-                "SELECT id, fullname, email, address, username, jenis_role, registered_by FROM `tb_ms_login` WHERE flagactive = TRUE;")
+                "SELECT id_petugas, fullname, email, address, username, jenis_role, registered_by FROM `tb_ms_login` WHERE flagactive = TRUE;")
             curr.execute(q_is_exist)
             rs = curr.fetchall()
             res_data['response'] = 'OK'
