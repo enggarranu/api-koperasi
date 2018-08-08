@@ -24,7 +24,7 @@ def register_petugas_get_id():
             rs = curr.fetchall()
             jumlah_row = rs[0][0]
             res_data['response'] = 'OK'
-            res_data['msg'] = "PG"+jumlah_row
+            res_data['msg'] = "PG"+str(jumlah_row)
             db.close()
             return json.dumps(res_data)
 
