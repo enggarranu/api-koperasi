@@ -24,8 +24,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="85" column="34" selection-start-line="85" selection-start-column="34" selection-end-line="85" selection-end-column="34" />
+            <state relative-caret-position="288">
+              <caret line="613" column="38" selection-start-line="613" selection-start-column="38" selection-end-line="613" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -100,9 +100,9 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="width" value="977" />
-    <option name="height" value="1056" />
+    <option name="x" value="946" />
+    <option name="width" value="982" />
+    <option name="height" value="1061" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -110,6 +110,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -121,7 +122,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -431,11 +431,32 @@
       <option name="project" value="LOCAL" />
       <updated>1533712410855</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Register petugas">
+      <created>1533712500617</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1533712500617</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Register petugas">
+      <created>1533712739122</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1533712739122</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Bayar Cicilan">
+      <created>1534395564993</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1534395564993</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1753" height="962" extended-state="6" />
+    <frame x="-8" y="-8" width="1618" height="887" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -445,7 +466,7 @@
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" x="859" y="62" width="1146" height="796" id="Run" order="2" sideWeight="0.49946696" weight="0.48789346" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49271846" weight="0.400978" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.103337616" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="R Graphics" order="3" />
@@ -466,7 +487,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" x="859" y="62" width="1146" height="796" id="Run" order="2" sideWeight="0.49946696" weight="0.48789346" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.40169904" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -474,8 +495,8 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="R Graphics" order="4" />
+      <window_info anchor="bottom" x="859" y="62" width="1146" height="796" id="Run" order="2" sideWeight="0.49946696" weight="0.48789346" />
       <window_info anchor="right" id="R Packages" order="5" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" weight="0.3297414" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49271846" visible="true" weight="0.400978" />
@@ -507,7 +528,8 @@
     <MESSAGE value="Login Management | inquiry petugas" />
     <MESSAGE value="Add Validation Form peminjaman" />
     <MESSAGE value="Register petugas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Register petugas" />
+    <MESSAGE value="Bayar Cicilan" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bayar Cicilan" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -839,8 +861,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="85" column="34" selection-start-line="85" selection-start-column="34" selection-end-line="85" selection-end-column="34" />
+        <state relative-caret-position="288">
+          <caret line="613" column="38" selection-start-line="613" selection-start-column="38" selection-end-line="613" selection-end-column="38" />
         </state>
       </provider>
     </entry>
