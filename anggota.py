@@ -1,6 +1,9 @@
 from flask import request, abort, json
 import connection
-from koperasi_main import *
+import koperasi_main
+
+api_version = koperasi_main.api_version
+koperasi = koperasi_main.koperasi
 
 
 def register_anggota():
