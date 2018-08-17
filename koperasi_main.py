@@ -12,6 +12,7 @@ import pembayaran
 
 koperasi = Flask(__name__)
 CORS(koperasi)
+cors = CORS(koperasi, resorces={r'/d/*': {"origins": '*'}})
 api_version = "API_KOPERASI Ver 2017.9 By Eng | (c) Copyrights Enggar 2017"
 
 # PETUGAS
