@@ -6,9 +6,9 @@ import logging
 from logging.handlers import RotatingFileHandler
 
 import connection
-import petugas
+from petugas import *
 import login
-import anggota
+from anggota import *
 import setoran
 import pinjaman
 import pengambilan
@@ -166,8 +166,6 @@ def get_id_transaksi_pembayaran():
     return pembayaran.get_id_transaksi_pembayaran()
 
 if __name__ == '__main__':
-    api_version = "API_KOPERASI Ver 2017.9 By Eng | (c) Copyrights Enggar 2017"
-    koperasi = koperasi
     handler = RotatingFileHandler('/var/log/api-koperasi/API_KOPERASI.log', maxBytes=10000, backupCount=1)
     handler.setLevel(logging.INFO)
     koperasi.logger.addHandler(handler)
