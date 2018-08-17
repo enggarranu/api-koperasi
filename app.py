@@ -15,23 +15,23 @@ api_version = "API_KOPERASI Ver 2017.9 By Eng | (c) Copyrights Enggar 2017"
 # PETUGAS DAN ANGGOTA
 @app.route('/register_petugas_get_id', methods=["GET",])
 def register_petugas_get_id():
-    petugas.register_petugas_get_id()
+    return petugas.register_petugas_get_id()
 
 @app.route('/register_petugas', methods=["POST","GET"])
 def register():
-    petugas.register()
+    return petugas.register()
 
 @app.route('/inquiry_petugas', methods=["GET",])
 def inquiry_petugas():
-    petugas.inquiry_petugas()
+    return petugas.inquiry_petugas()
 
 @app.route('/modify_petugas', methods=["POST","GET"])
 def modify_petugas():
-    petugas.modify_petugas()
+    return petugas.modify_petugas()
 
 @app.route('/delete_petugas', methods=["POST","GET"])
 def delete_petugas():
-    petugas.delete_petugas()
+    return petugas.delete_petugas()
 
 @app.route('/login', methods=["POST","GET"])
 def login():
