@@ -1,7 +1,11 @@
-from flask import Flask
+import hashlib
+
+from flask import Flask, request, abort, jsonify
 from flask_cors import CORS, cross_origin
 import logging
 from logging.handlers import RotatingFileHandler
+
+import connection
 import petugas
 import login
 import anggota
@@ -39,7 +43,57 @@ def delete_petugas():
 # LOGIN
 @koperasi.route('/login', methods=["POST", "GET"])
 def login():
-    return login.login_petugas()
+    # return login.login_petugas()
+
+    try:
+        res_data = {}
+        if request.method == 'GET':
+            return api_version
+        else:
+            if not request.json:
+                abort(400)
+            data = request.json
+            username = data['username']
+            password = data['password']
+            print (data)
+            if (data['signature'] != hashlib.md5(username + password).hexdigest()):
+                res_data['response'] = 'NOK'
+                res_data['msg'] = 'Invalid Signature!'
+                print(data['signature'])
+                print(hashlib.md5(username + password).hexdigest())
+                return jsonify(res_data)
+
+            koperasi.logger.info("input :" + str(data))
+            db = connection.get_db()
+            curr = db.cursor()
+            q_is_exist = (
+                        "SELECT fullname, username, jenis_role FROM `tb_ms_login` where username = '" + username + "' and password = '" + password + "';")
+            koperasi.logger.info(q_is_exist)
+            curr.execute(q_is_exist)
+            rs = curr.fetchall()
+            if len(rs) < 1:
+                res_data['response'] = 'NOK'
+                res_data['msg'] = 'Username atau password salah, Mohon cek kembali!!!'
+                return jsonify(res_data)
+
+            fullname = rs[0][0]
+            username = rs[0][1]
+            jenis_role = rs[0][2]
+            if (fullname != None or username != None):
+                res_data['response'] = 'OK'
+                res_data['msg'] = 'Success Login!!'
+                res_data['fullname'] = fullname
+                res_data['jenis_role'] = jenis_role
+                koperasi.logger.info(res_data)
+                return jsonify(res_data)
+
+    except Exception as e:
+        res_data = {}
+        koperasi.logger.error('An error occured.')
+        koperasi.logger.error(e)
+        res_data['ACK'] = 'NOK'
+        res_data['msg'] = str(e)
+        return jsonify(res_data)
 
 # ANGGOTA
 @koperasi.route('/register_anggota', methods=["POST", "GET"])
