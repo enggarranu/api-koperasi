@@ -1,9 +1,7 @@
 import datetime
 from flask import request, abort, json
-import app
+from app import *
 import connection
-
-api_version = app.api_version
 
 # PENGAMBILAN
 def get_id_transaksi_pengambilan_pinjaman():

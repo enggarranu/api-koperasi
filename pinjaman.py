@@ -1,9 +1,7 @@
 import datetime
 from flask import request, abort, json
-import app
+from app import *
 import connection
-
-api_version = app.api_version
 
 # PINJAMAN
 def get_idtransaksi_pinjaman():

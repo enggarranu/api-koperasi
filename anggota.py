@@ -1,8 +1,7 @@
 from flask import request, abort, json
 import connection
-import app
+from app import *
 
-api_version = app.api_version
 
 def register_anggota():
     res_data = {}

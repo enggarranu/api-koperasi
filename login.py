@@ -1,9 +1,7 @@
 import hashlib
 from flask import request, abort, json
 import connection
-import app
-
-api_version = app.api_version
+from app import *
 
 def login():
     try:

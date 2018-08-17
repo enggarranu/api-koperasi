@@ -1,8 +1,6 @@
 from flask import request, abort, json
-import app
+from app import api_version
 import connection
-
-api_version = app.api_version
 
 def register_petugas_get_id():
     res_data = {}
