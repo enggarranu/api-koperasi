@@ -673,7 +673,7 @@ def inquiry_pembayaran():
             "				25000 + kr.angsuran ELSE kr.angsuran \n" +
             "			END AS jumlah_pembayaran,\n" +
             "		count(pb.id_kredit) + 1 as pembayaran_ke,\n" +
-            "		kr.lama_cicilan - count(pb.id_kredit) - 1 as sisa_angsuran\n" +
+            "		kr.lama_cicilan - count(pb.id_kredit) as sisa_angsuran\n" +
             "		FROM\n" +
             "			tb_kredit kr\n" +
             "			LEFT JOIN tb_pembayaran pb ON kr.id_kredit = pb.id_kredit \n" +
@@ -728,7 +728,7 @@ def bayar_cicilan():
                 "VALUES\n" +
                 "	( '"+id_pembayaran+"', '"+id_anggota+"', '"+tanggal_pembayaran+"', "+denda+", '"+tanggal_tempo_pembayaran+"', "+jumlah_pembayaran+", "+sisa_pinjaman+", '"+id_kredit+"', "+angsuran_ke+", "+sisa_angsuran+", '"+insert_by+"' )")
         curr.execute(q)
-        if int(sisa_angsuran) != 0 :
+        if int(sisa_angsuran) != 1 :
             lunas = '0'
         else :
             lunas = '1'
