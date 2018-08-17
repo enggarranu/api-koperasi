@@ -33,8 +33,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="694" column="47" selection-start-line="694" selection-start-column="47" selection-end-line="694" selection-end-column="47" />
+            <state relative-caret-position="295">
+              <caret line="694" column="42" selection-start-line="694" selection-start-column="42" selection-end-line="694" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -499,7 +499,21 @@
       <option name="project" value="LOCAL" />
       <updated>1534523186905</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Add function inquiry_pembayaran">
+      <created>1534523248387</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1534523248387</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Add function inquiry_pembayaran">
+      <created>1534523275295</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1534523275295</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -512,8 +526,8 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" x="859" y="62" width="1146" height="796" id="Run" order="2" sideWeight="0.49946696" weight="0.48789346" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49271846" visible="true" weight="0.396" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.41848522" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49271846" visible="true" weight="0.396" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17073171" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="R Graphics" order="3" />
@@ -824,8 +838,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="694" column="47" selection-start-line="694" selection-start-column="47" selection-end-line="694" selection-end-column="47" />
+        <state relative-caret-position="295">
+          <caret line="694" column="42" selection-start-line="694" selection-start-column="42" selection-end-line="694" selection-end-column="42" />
         </state>
       </provider>
     </entry>

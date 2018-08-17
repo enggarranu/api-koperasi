@@ -692,7 +692,7 @@ def inquiry_pembayaran():
             rs_data["denda"] = str(rs[4])
             rs_data["jumlah_pembayaran"] = str(rs[5])
             rs_data["pembayaran_ke"] = str(rs[6])
-            rs_data["sisa_angsuran"] = str(rs[7])
+            rs_data["sisa_angsuran"] = int(rs[7])
         else :
             rs_data["response"] = 'NOK'
         return json.dumps(rs_data)
