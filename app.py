@@ -651,7 +651,7 @@ def inquiry_pembayaran():
             "	ADDDATE( max( tanggal_pembayaran ), INTERVAL 1 MONTH ) \n" +
             "	END AS jatuh_tempo,\n" +
             "	kr.angsuran,\n" +
-            "	kr.jumlah_pinjaman - ( count( jumlah_pembayaran ) + count( pb.denda ) ) sisa_pinjaman,\n" +
+            "	kr.jumlah_pinjaman - (sum(COALESCE(pb.jumlah_pembayaran,0)) + sum(COALESCE(pb.denda,0))) sisa_pinjaman,\n" +
             "CASE\n" +
             "		\n" +
             "		WHEN ( count( pb.id_kredit ) = 0 AND ADDDATE( kr.tanggal_pengambilan, INTERVAL 1 MONTH ) < CURDATE( ) ) \n" +
