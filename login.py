@@ -2,7 +2,8 @@ import hashlib
 from flask import request, abort, json
 import connection
 from koperasi_main import *
-def login():
+
+def login_petugas():
     try:
         res_data = {}
         if request.method == 'GET':
@@ -32,6 +33,7 @@ def login():
                 res_data['response'] = 'NOK'
                 res_data['msg'] = 'Username atau password salah, Mohon cek kembali!!!'
                 return json.dumps(res_data)
+
             fullname = rs[0][0]
             username = rs[0][1]
             jenis_role = rs[0][2]
@@ -42,6 +44,7 @@ def login():
                 res_data['jenis_role'] =jenis_role
                 koperasi.logger.info(res_data)
                 return json.dumps(res_data)
+
     except Exception as e:
         res_data = {}
         koperasi.logger.error('An error occured.')

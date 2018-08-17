@@ -38,7 +38,7 @@ def delete_petugas():
 # LOGIN
 @koperasi.route('/login', methods=["POST", "GET"])
 def login():
-    return login.login()
+    return login.login_petugas()
 
 # ANGGOTA
 @koperasi.route('/register_anggota', methods=["POST", "GET"])
