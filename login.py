@@ -1,7 +1,9 @@
 import hashlib
 from flask import request, abort, json
 import connection
-from koperasi_main import api_version, koperasi
+# from koperasi_main import api_version, koperasi
+from koperasi_main import koperasi, api_version
+
 
 def login_petugas():
     try:

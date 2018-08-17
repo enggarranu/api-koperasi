@@ -37,7 +37,6 @@ def delete_petugas():
 
 # LOGIN
 @koperasi.route('/login', methods=["POST", "GET"])
-@cross_origin()
 def login():
     return login.login_petugas()
 
