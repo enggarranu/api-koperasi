@@ -1,6 +1,6 @@
 from flask import request, abort, json
 import connection
-from app import *
+from koperasi import *
 
 
 def register_anggota():
@@ -19,7 +19,7 @@ def register_anggota():
         petugas = data['insert_by']
         tanggal_registrasi = data['tanggal_registrasi']
 
-        app.logger.info("input :" + str(data))
+        koperasi.logger.info("input :" + str(data))
         db = connection.get_db()
         curr = db.cursor()
         q_is_exist = (
@@ -94,7 +94,7 @@ def modify_anggota():
         tanggal_modifikasi = str(data['tanggal_modifikasi'])
         old_ktp = str(data['ktp_old'])
 
-        app.logger.info("input :" + str(data))
+        koperasi.logger.info("input :" + str(data))
         db = connection.get_db()
         curr = db.cursor()
         if ktp != old_ktp:
@@ -128,7 +128,7 @@ def delete_anggota():
         data = request.json
         id_anggota = str(data['id_anggota'])
 
-        app.logger.info("input :" + str(data))
+        koperasi.logger.info("input :" + str(data))
         db = connection.get_db()
         curr = db.cursor()
 

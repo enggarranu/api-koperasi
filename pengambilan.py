@@ -1,6 +1,6 @@
 import datetime
 from flask import request, abort, json
-from app import *
+from koperasi import *
 import connection
 
 # PENGAMBILAN
@@ -59,7 +59,7 @@ def register_pengambilan():
             tanggal_pengambilan = str(data['tanggal_pengambilan'])
             insert_by = str(data['insert_by'])
 
-            app.logger.info("input :" + str(data))
+            koperasi.logger.info("input :" + str(data))
             db = connection.get_db()
             curr = db.cursor()
 

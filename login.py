@@ -1,7 +1,7 @@
 import hashlib
 from flask import request, abort, json
 import connection
-from app import app, api_version
+from koperasi import koperasi, api_version
 def login():
     try:
         res_data = {}
@@ -21,11 +21,11 @@ def login():
                 print(hashlib.md5(username+password).hexdigest())
                 return json.dumps(res_data)
 
-            app.logger.info("input :" + str(data))
+            koperasi.logger.info("input :" + str(data))
             db = connection.get_db()
             curr = db.cursor()
             q_is_exist = ("SELECT fullname, username, jenis_role FROM `tb_ms_login` where username = '"+username+"' and password = '"+password+"';")
-            app.logger.info(q_is_exist)
+            koperasi.logger.info(q_is_exist)
             curr.execute(q_is_exist)
             rs = curr.fetchall()
             if len(rs) < 1:
@@ -40,12 +40,12 @@ def login():
                 res_data['msg'] = 'Success Login!!'
                 res_data['fullname'] = fullname
                 res_data['jenis_role'] =jenis_role
-                app.logger.info(res_data)
+                koperasi.logger.info(res_data)
                 return json.dumps(res_data)
     except Exception as e:
         res_data = {}
-        app.logger.error('An error occured.')
-        app.logger.error(e)
+        koperasi.logger.error('An error occured.')
+        koperasi.logger.error(e)
         res_data['ACK'] = 'NOK'
         res_data['msg'] = str(e)
         return json.dumps(res_data)

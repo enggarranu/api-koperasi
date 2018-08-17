@@ -1,6 +1,6 @@
 import datetime
 from flask import request, abort, json
-from app import *
+from koperasi import *
 import connection
 
 def get_idtransaksi_setoran():
@@ -55,7 +55,7 @@ def modify_setoran():
         edit_by = str(data['insert_by'])
         tanggal_modifikasi = str(data['tanggal_setoran'])
 
-        app.logger.info("input :" + str(data))
+        koperasi.logger.info("input :" + str(data))
         db = connection.get_db()
         curr = db.cursor()
 
