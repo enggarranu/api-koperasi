@@ -725,8 +725,14 @@ def bayar_cicilan():
         q = ("INSERT INTO `db_koperasi`.`tb_pembayaran` ( `id_pembayaran`, `id_anggota`, `tanggal_pembayaran`, `denda`, `tanggal_tempo_pembayaran`, `jumlah_pembayaran`, `sisa_pinjaman`, `id_kredit`, `angsuran_ke`, `sisa_angsuran`, `insert_by` )\n" +
                 "VALUES\n" +
                 "	( '"+id_pembayaran+"', '"+id_anggota+"', '"+tanggal_pembayaran+"', "+denda+", '"+tanggal_tempo_pembayaran+"', "+jumlah_pembayaran+", "+sisa_pinjaman+", '"+id_kredit+"', "+angsuran_ke+", "+sisa_angsuran+", '"+insert_by+"' )")
-
         curr.execute(q)
+        if int(sisa_angsuran) != 0 :
+            lunas = 0
+        else :
+            lunas = 1
+
+        q_update = ("update tb_kredit set sisa_pinjaman = '"+sisa_pinjaman+"', sisa_angsuran = '"+sisa_angsuran+"', lunas = '"+lunas+"' where id_kredit = '"+id_kredit+"'")
+        curr.execute(q_update)
         db.commit()
         res_data = {}
         res_data['response'] = 'OK'
