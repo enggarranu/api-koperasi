@@ -732,6 +732,8 @@ def bayar_cicilan():
             lunas = '0'
         else :
             lunas = '1'
+            sisa_angsuran = 0
+            sisa_pinjaman = 0
 
         q_update = ("update tb_kredit set sisa_pinjaman = "+sisa_pinjaman+", sisa_angsuran = "+sisa_angsuran+", lunas = "+lunas+" where id_kredit = '"+id_kredit+"'")
         curr.execute(q_update)
