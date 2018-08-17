@@ -686,7 +686,7 @@ def inquiry_pembayaran():
             rs_data["jumlah_pinjaman"] = str(rs[0])
             rs_data["jatuh_tempo"] = str(str(rs[1]))
             rs_data["angsuran"] = str(rs[2])
-            rs_data["sisa_pinjaman"] = str(rs[3])
+            rs_data["sisa_pinjaman"] = int(rs[3])
             rs_data["denda"] = str(rs[4])
             rs_data["jumlah_pembayaran"] = str(rs[5])
         else :
