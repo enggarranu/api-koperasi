@@ -698,6 +698,7 @@ def inquiry_pembayaran():
         return json.dumps(rs_data)
 
 
+
 if __name__ == '__main__':
     handler = RotatingFileHandler('/var/log/api-koperasi/API_KOPERASI.log', maxBytes=10000, backupCount=1)
     handler.setLevel(logging.INFO)
