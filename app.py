@@ -611,7 +611,7 @@ def get_id_transaksi_pembayaran():
             rs = curr.fetchall()
             jumlah_row = rs[0][0]
             res_data['response'] = 'OK'
-            res_data['msg'] = 'UTI/PBYRN'+str(datetime.datetime.today().strftime('%Y%m%d'))+str(jumlah_row+1)
+            res_data['msg'] = 'UTI/ANS'+str(datetime.datetime.today().strftime('%Y%m%d'))+str(jumlah_row+1)
 
             q_is_exist = ("SELECT\n" +
 "	ta.id_anggota, ta.nama_anggota, kr.id_kredit, id_pengambilan\n" +
