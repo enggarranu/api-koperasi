@@ -681,13 +681,16 @@ def inquiry_pembayaran():
         curr.execute(q)
         rs = curr.fetchone()
         rs_data = {}
-        rs_data["jumlah_pinjaman"] = str(rs[0])
-        rs_data["jatuh_tempo"] = str(str(rs[1]))
-        rs_data["angsuran"] = str(rs[2])
-        rs_data["sisa_pinjaman"] = str(rs[3])
-        rs_data["denda"] = str(rs[4])
-        rs_data["jumlah_pinjaman"] = str(rs[5])
-
+        if len(rs) > 0 :
+            rs_data["response"] = "OK"
+            rs_data["jumlah_pinjaman"] = str(rs[0])
+            rs_data["jatuh_tempo"] = str(str(rs[1]))
+            rs_data["angsuran"] = str(rs[2])
+            rs_data["sisa_pinjaman"] = str(rs[3])
+            rs_data["denda"] = str(rs[4])
+            rs_data["jumlah_pinjaman"] = str(rs[5])
+        else :
+            rs_data["response"] = 'NOK'
         return json.dumps(rs_data)
 
 
