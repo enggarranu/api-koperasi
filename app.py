@@ -698,6 +698,42 @@ def inquiry_pembayaran():
         return json.dumps(rs_data)
 
 
+@app.route('/bayar_cicilan', methods=["POST","GET"])
+def bayar_cicilan():
+    if request.method == 'GET':
+        return api_version
+    else:
+        if not request.json:
+            abort(400)
+        data = request.json
+        print (data)
+        app.logger.info("input :" + str(data))
+        id_pembayaran = data["id_pembayaran"]
+        id_anggota = data["id_anggota"]
+        tanggal_pembayaran = data["tanggal_pembayaran"]
+        denda = data["denda"]
+        tanggal_tempo_pembayaran = data["tanggal_tempo_pembayaran"]
+        jumlah_pembayaran = data["jumlah_pembayaran"]
+        sisa_pinjaman = data["sisa_pinjaman"]
+        id_kredit = data["id_kredit"]
+        angsuran_ke = data["angsuran_ke"]
+        sisa_angsuran = data["sisa_angsuran"]
+        insert_by = data["insert_by"]
+        db = connection.get_db()
+        curr = db.cursor()
+
+        q = ("INSERT INTO `db_koperasi`.`tb_pembayaran` ( `id_pembayaran`, `id_anggota`, `tanggal_pembayaran`, `denda`, `tanggal_tempo_pembayaran`, `jumlah_pembayaran`, `sisa_pinjaman`, `id_kredit`, `angsuran_ke`, `sisa_angsuran`, `insert_by` )\n" +
+                "VALUES\n" +
+                "	( '"+id_pembayaran+"', '"+id_anggota+"', '"+tanggal_pembayaran+"', "+denda+", '"+tanggal_tempo_pembayaran+"', "+jumlah_pembayaran+", "+sisa_pinjaman+", '"+id_kredit+"', "+angsuran_ke+", "+sisa_angsuran+", '"+insert_by+"' )")
+
+        curr.execute(q)
+        db.commit()
+        res_data = {}
+        res_data['response'] = 'OK'
+        res_data['msg'] = 'Pembayran Cicilan berhasil dilakukan'
+        return json.dumps(res_data)
+
+
 
 if __name__ == '__main__':
     handler = RotatingFileHandler('/var/log/api-koperasi/API_KOPERASI.log', maxBytes=10000, backupCount=1)
