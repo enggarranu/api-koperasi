@@ -1,15 +1,14 @@
 import hashlib
 from flask import request, abort, json
 import connection
-# from koperasi_main import api_version, koperasi
-from koperasi_main import koperasi, api_version
+import koperasi_main
 
 
 def login_petugas():
     try:
         res_data = {}
         if request.method == 'GET':
-            return api_version
+            return koperasi_main.api_version
         else:
             if not request.json:
                 abort(400)
@@ -24,11 +23,11 @@ def login_petugas():
                 print(hashlib.md5(username+password).hexdigest())
                 return json.dumps(res_data)
 
-            koperasi.logger.info("input :" + str(data))
+            koperasi_main.koperasi.logger.info("input :" + str(data))
             db = connection.get_db()
             curr = db.cursor()
             q_is_exist = ("SELECT fullname, username, jenis_role FROM `tb_ms_login` where username = '"+username+"' and password = '"+password+"';")
-            koperasi.logger.info(q_is_exist)
+            koperasi_main.koperasi.logger.info(q_is_exist)
             curr.execute(q_is_exist)
             rs = curr.fetchall()
             if len(rs) < 1:
@@ -49,8 +48,8 @@ def login_petugas():
 
     except Exception as e:
         res_data = {}
-        koperasi.logger.error('An error occured.')
-        koperasi.logger.error(e)
+        koperasi_main.koperasi.logger.error('An error occured.')
+        koperasi_main.koperasi.logger.error(e)
         res_data['ACK'] = 'NOK'
         res_data['msg'] = str(e)
         return json.dumps(res_data)
