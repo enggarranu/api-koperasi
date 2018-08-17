@@ -1,7 +1,7 @@
 import hashlib
 from flask import request, abort, json
 import connection
-from koperasi_main import koperasi, api_version
+from koperasi_main import *
 def login():
     try:
         res_data = {}
