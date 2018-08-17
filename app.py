@@ -727,9 +727,9 @@ def bayar_cicilan():
                 "	( '"+id_pembayaran+"', '"+id_anggota+"', '"+tanggal_pembayaran+"', "+denda+", '"+tanggal_tempo_pembayaran+"', "+jumlah_pembayaran+", "+sisa_pinjaman+", '"+id_kredit+"', "+angsuran_ke+", "+sisa_angsuran+", '"+insert_by+"' )")
         curr.execute(q)
         if int(sisa_angsuran) != 0 :
-            lunas = False
+            lunas = '0'
         else :
-            lunas = True
+            lunas = '1'
 
         q_update = ("update tb_kredit set sisa_pinjaman = "+sisa_pinjaman+", sisa_angsuran = "+sisa_angsuran+", lunas = "+lunas+" where id_kredit = '"+id_kredit+"'")
         curr.execute(q_update)
