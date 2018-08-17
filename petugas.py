@@ -1,12 +1,6 @@
-import datetime
-import hashlib
-
-from flask import Flask, request, abort, json
-from flask_cors import CORS
-import connection
-import logging
-from logging.handlers import RotatingFileHandler
+from flask import request, abort, json
 import app
+import connection
 
 api_version = app.api_version
 
