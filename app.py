@@ -632,5 +632,4 @@ if __name__ == '__main__':
     handler.setLevel(logging.INFO)
     app.logger.addHandler(handler)
     app.run(host='172.21.151.159', port=5000, threaded=True, debug=True)
-
     # app.run(host='127.0.0.1', port=5000, threaded=True, debug=True)
