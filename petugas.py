@@ -1,5 +1,5 @@
 from flask import request, abort, json
-from koperasi import api_version
+from koperasi_main import api_version
 import connection
 
 def register_petugas_get_id():

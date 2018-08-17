@@ -1,7 +1,6 @@
 import datetime
-from flask import request, json
 import connection
-from koperasi import *
+from flask import request, json
 
 def get_id_transaksi_pembayaran():
         res_data = {}

@@ -1,6 +1,6 @@
 from flask import request, abort, json
 import connection
-from koperasi import *
+from koperasi_main import *
 
 
 def register_anggota():

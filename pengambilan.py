@@ -1,6 +1,6 @@
 import datetime
 from flask import request, abort, json
-from koperasi import *
+from koperasi_main import *
 import connection
 
 # PENGAMBILAN
