@@ -614,22 +614,91 @@ def get_id_transaksi_pembayaran():
             res_data['msg'] = 'UTI/ANS'+str(datetime.datetime.today().strftime('%Y%m%d'))+str(jumlah_row+1)
 
             q_is_exist = ("SELECT\n" +
-"	ta.id_anggota, ta.nama_anggota, kr.id_kredit, id_pengambilan\n" +
-"FROM\n" +
-"	`tb_kredit` kr\n" +
-"	LEFT JOIN tb_pembayaran pb ON kr.id_kredit = pb.id_kredit\n" +
-"	JOIN tb_anggota ta on ta.id_anggota = kr.id_anggota\n" +
-"WHERE\n" +
-"	kr.id_pengambilan IS NOT NULL")
+                            "	ta.id_anggota, ta.nama_anggota, kr.id_kredit, id_pengambilan\n" +
+                            "FROM\n" +
+                            "	`tb_kredit` kr\n" +
+                            "	LEFT JOIN tb_pembayaran pb ON kr.id_kredit = pb.id_kredit\n" +
+                            "	JOIN tb_anggota ta on ta.id_anggota = kr.id_anggota\n" +
+                            "WHERE\n" +
+                            "	kr.id_pengambilan IS NOT NULL")
             curr.execute(q_is_exist)
             rs = curr.fetchall()
             res_data['anggota_arr'] = rs
             db.close()
             return json.dumps(res_data)
 
+@app.route('/inquiry_pembayaran', methods=["POST","GET"])
+def inquiry_pembayaran():
+    if request.method == 'GET':
+        return api_version
+    else:
+        if not request.json:
+            abort(400)
+        data = request.json
+        print (data)
+        app.logger.info("input :" + str(data))
+        id_kredit = str(data['id_kredit'])
+        db = connection.get_db()
+        curr = db.cursor()
+
+        q = ("SELECT\n" +
+                "	kr.jumlah_pinjaman,\n" +
+                "CASE\n" +
+                "	\n" +
+                "	WHEN count( pb.id_kredit ) = 0 THEN\n" +
+                "	ADDDATE( kr.tanggal_pengambilan, INTERVAL 1 MONTH ) \n" +
+                "	WHEN count( pb.id_kredit ) > 0 THEN\n" +
+                "	ADDDATE( max( tanggal_pembayaran ), INTERVAL 1 MONTH ) \n" +
+                "	END AS jatuh_tempo,\n" +
+                "	kr.angsuran,\n" +
+                "	kr.jumlah_pinjaman - ( count( jumlah_pembayaran ) + count( pb.denda ) ) sisa_pinjaman,\n" +
+                "CASE\n" +
+                "		\n" +
+                "		WHEN ( count( pb.id_kredit ) = 0 AND ADDDATE( kr.tanggal_pengambilan, INTERVAL 1 MONTH ) < CURDATE( ) ) \n" +
+                "		OR (\n" +
+                "			count( pb.id_kredit ) > 0 \n" +
+                "			AND ADDDATE( max( pb.tanggal_pembayaran ), INTERVAL 1 MONTH ) < CURDATE( ) \n" +
+                "			) THEN\n" +
+                "			25000 ELSE 0 \n" +
+                "		END AS denda,\n" +
+                "	CASE\n" +
+                "			\n" +
+                "			WHEN ( count( pb.id_kredit ) = 0 AND ADDDATE( kr.tanggal_pengambilan, INTERVAL 1 MONTH ) < CURDATE( ) ) \n" +
+                "			OR (\n" +
+                "				count( pb.id_kredit ) > 0 \n" +
+                "				AND ADDDATE( max( pb.tanggal_pembayaran ), INTERVAL 1 MONTH ) < CURDATE( ) \n" +
+                "				) THEN\n" +
+                "				25000 + kr.angsuran ELSE kr.angsuran \n" +
+                "			END AS jumlah_pembayaran \n" +
+                "		FROM\n" +
+                "			tb_kredit kr\n" +
+                "			LEFT JOIN tb_pembayaran pb ON kr.id_kredit = pb.id_kredit \n" +
+                "		WHERE\n" +
+                "			kr.id_kredit = '"+id_kredit+"' \n" +
+                "	GROUP BY\n" +
+                "kr.jumlah_pinjaman")
+
+        curr.execute(q)
+        rs = curr.fetchone()
+        rs_data = {}
+        rs_data["jumlah_pinjaman"] = str(rs[0])
+        rs_data["jatuh_tempo"] = str(str(rs[1]))
+        rs_data["angsuran"] = str(rs[2])
+        rs_data["sisa_pinjaman"] = str(rs[3])
+        rs_data["denda"] = str(rs[4])
+        rs_data["jumlah_pinjaman"] = str(rs[5])
+
+        return json.dumps(rs_data)
+
+
+
+
+        
+
+
 if __name__ == '__main__':
     handler = RotatingFileHandler('/var/log/api-koperasi/API_KOPERASI.log', maxBytes=10000, backupCount=1)
     handler.setLevel(logging.INFO)
     app.logger.addHandler(handler)
-    app.run(host='172.21.151.159', port=5000, threaded=True, debug=True)
-    # app.run(host='127.0.0.1', port=5000, threaded=True, debug=True)
+    # app.run(host='172.21.151.159', port=5000, threaded=True, debug=True)
+    app.run(host='127.0.0.1', port=5000, threaded=True, debug=True)
