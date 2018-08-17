@@ -642,41 +642,43 @@ def inquiry_pembayaran():
         curr = db.cursor()
 
         q = ("SELECT\n" +
-                "	kr.jumlah_pinjaman,\n" +
-                "CASE\n" +
-                "	\n" +
-                "	WHEN count( pb.id_kredit ) = 0 THEN\n" +
-                "	ADDDATE( kr.tanggal_pengambilan, INTERVAL 1 MONTH ) \n" +
-                "	WHEN count( pb.id_kredit ) > 0 THEN\n" +
-                "	ADDDATE( max( tanggal_pembayaran ), INTERVAL 1 MONTH ) \n" +
-                "	END AS jatuh_tempo,\n" +
-                "	kr.angsuran,\n" +
-                "	kr.jumlah_pinjaman - ( count( jumlah_pembayaran ) + count( pb.denda ) ) sisa_pinjaman,\n" +
-                "CASE\n" +
-                "		\n" +
-                "		WHEN ( count( pb.id_kredit ) = 0 AND ADDDATE( kr.tanggal_pengambilan, INTERVAL 1 MONTH ) < CURDATE( ) ) \n" +
-                "		OR (\n" +
-                "			count( pb.id_kredit ) > 0 \n" +
-                "			AND ADDDATE( max( pb.tanggal_pembayaran ), INTERVAL 1 MONTH ) < CURDATE( ) \n" +
-                "			) THEN\n" +
-                "			25000 ELSE 0 \n" +
-                "		END AS denda,\n" +
-                "	CASE\n" +
-                "			\n" +
-                "			WHEN ( count( pb.id_kredit ) = 0 AND ADDDATE( kr.tanggal_pengambilan, INTERVAL 1 MONTH ) < CURDATE( ) ) \n" +
-                "			OR (\n" +
-                "				count( pb.id_kredit ) > 0 \n" +
-                "				AND ADDDATE( max( pb.tanggal_pembayaran ), INTERVAL 1 MONTH ) < CURDATE( ) \n" +
-                "				) THEN\n" +
-                "				25000 + kr.angsuran ELSE kr.angsuran \n" +
-                "			END AS jumlah_pembayaran \n" +
-                "		FROM\n" +
-                "			tb_kredit kr\n" +
-                "			LEFT JOIN tb_pembayaran pb ON kr.id_kredit = pb.id_kredit \n" +
-                "		WHERE\n" +
-                "			kr.id_kredit = '"+id_kredit+"' \n" +
-                "	GROUP BY\n" +
-                "kr.jumlah_pinjaman")
+            "	kr.jumlah_pinjaman,\n" +
+            "CASE\n" +
+            "	\n" +
+            "	WHEN count( pb.id_kredit ) = 0 THEN\n" +
+            "	ADDDATE( kr.tanggal_pengambilan, INTERVAL 1 MONTH ) \n" +
+            "	WHEN count( pb.id_kredit ) > 0 THEN\n" +
+            "	ADDDATE( max( tanggal_pembayaran ), INTERVAL 1 MONTH ) \n" +
+            "	END AS jatuh_tempo,\n" +
+            "	kr.angsuran,\n" +
+            "	kr.jumlah_pinjaman - ( count( jumlah_pembayaran ) + count( pb.denda ) ) sisa_pinjaman,\n" +
+            "CASE\n" +
+            "		\n" +
+            "		WHEN ( count( pb.id_kredit ) = 0 AND ADDDATE( kr.tanggal_pengambilan, INTERVAL 1 MONTH ) < CURDATE( ) ) \n" +
+            "		OR (\n" +
+            "			count( pb.id_kredit ) > 0 \n" +
+            "			AND ADDDATE( max( pb.tanggal_pembayaran ), INTERVAL 1 MONTH ) < CURDATE( ) \n" +
+            "			) THEN\n" +
+            "			25000 ELSE 0 \n" +
+            "		END AS denda,\n" +
+            "	CASE\n" +
+            "			\n" +
+            "			WHEN (count(pb.id_kredit) = 0 AND ADDDATE( kr.tanggal_pengambilan, INTERVAL 1 MONTH ) < CURDATE( ) ) \n" +
+            "			OR (\n" +
+            "				count( pb.id_kredit ) > 0 \n" +
+            "				AND ADDDATE( max( pb.tanggal_pembayaran ), INTERVAL 1 MONTH ) < CURDATE( ) \n" +
+            "				) THEN\n" +
+            "				25000 + kr.angsuran ELSE kr.angsuran \n" +
+            "			END AS jumlah_pembayaran,\n" +
+            "		count(pb.id_kredit) + 1 as pembayaran_ke,\n" +
+            "		kr.lama_cicilan - count(pb.id_kredit) - 1 as sisa_angsuran\n" +
+            "		FROM\n" +
+            "			tb_kredit kr\n" +
+            "			LEFT JOIN tb_pembayaran pb ON kr.id_kredit = pb.id_kredit \n" +
+            "		WHERE\n" +
+            "			kr.id_kredit = '"+id_kredit+"' \n" +
+            "	GROUP BY\n" +
+            "kr.jumlah_pinjaman")
 
         curr.execute(q)
         rs = curr.fetchone()
