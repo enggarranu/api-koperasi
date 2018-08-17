@@ -17,7 +17,7 @@ import pembayaran
 koperasi = Flask(__name__)
 CORS(koperasi)
 cors = CORS(koperasi, resorces={r'/d/*': {"origins": '*'}})
-api_version = "API_KOPERASI Ver 2017.9 By Eng | (c) Copyrights Enggar 2017"
+
 
 # PETUGAS
 @koperasi.route('/register_petugas_get_id', methods=["GET", ])
@@ -166,6 +166,8 @@ def get_id_transaksi_pembayaran():
     return pembayaran.get_id_transaksi_pembayaran()
 
 if __name__ == '__main__':
+    api_version = "API_KOPERASI Ver 2017.9 By Eng | (c) Copyrights Enggar 2017"
+    koperasi = koperasi
     handler = RotatingFileHandler('/var/log/api-koperasi/API_KOPERASI.log', maxBytes=10000, backupCount=1)
     handler.setLevel(logging.INFO)
     koperasi.logger.addHandler(handler)
