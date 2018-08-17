@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import logging
 from logging.handlers import RotatingFileHandler
 import petugas
@@ -37,6 +37,7 @@ def delete_petugas():
 
 # LOGIN
 @koperasi.route('/login', methods=["POST", "GET"])
+@cross_origin()
 def login():
     return login.login_petugas()
 
