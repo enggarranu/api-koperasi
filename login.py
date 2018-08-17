@@ -1,8 +1,7 @@
 import hashlib
 from flask import request, abort, json
 import connection
-from app import *
-
+from app import app, api_version
 def login():
     try:
         res_data = {}
