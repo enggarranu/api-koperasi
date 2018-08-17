@@ -614,13 +614,15 @@ def get_id_transaksi_pembayaran():
             res_data['msg'] = 'UTI/ANS'+str(datetime.datetime.today().strftime('%Y%m%d'))+str(jumlah_row+1)
 
             q_is_exist = ("SELECT\n" +
-                            "	ta.id_anggota, ta.nama_anggota, kr.id_kredit, id_pengambilan\n" +
-                            "FROM\n" +
-                            "	`tb_kredit` kr\n" +
-                            "	LEFT JOIN tb_pembayaran pb ON kr.id_kredit = pb.id_kredit\n" +
-                            "	JOIN tb_anggota ta on ta.id_anggota = kr.id_anggota\n" +
-                            "WHERE\n" +
-                            "	kr.id_pengambilan IS NOT NULL")
+                    "	ta.id_anggota, ta.nama_anggota, kr.id_kredit, id_pengambilan\n" +
+                    "FROM\n" +
+                    "	`tb_kredit` kr\n" +
+                    "	LEFT JOIN tb_pembayaran pb ON kr.id_kredit = pb.id_kredit\n" +
+                    "	JOIN tb_anggota ta on ta.id_anggota = kr.id_anggota\n" +
+                    "WHERE\n" +
+                    "	kr.id_pengambilan IS NOT NULL\n" +
+                    "	and kr.lunas = 0\n" +
+                    "	GROUP BY ta.id_anggota, ta.nama_anggota, kr.id_kredit, id_pengambilan")
             curr.execute(q_is_exist)
             rs = curr.fetchall()
             res_data['anggota_arr'] = rs
