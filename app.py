@@ -731,7 +731,7 @@ def bayar_cicilan():
         else :
             lunas = 1
 
-        q_update = ("update tb_kredit set sisa_pinjaman = '"+sisa_pinjaman+"', sisa_angsuran = '"+sisa_angsuran+"', lunas = '"+lunas+"' where id_kredit = '"+id_kredit+"'")
+        q_update = ("update tb_kredit set sisa_pinjaman = "+sisa_pinjaman+", sisa_angsuran = "+sisa_angsuran+", lunas = '"+lunas+"' where id_kredit = '"+id_kredit+"'")
         curr.execute(q_update)
         db.commit()
         res_data = {}
