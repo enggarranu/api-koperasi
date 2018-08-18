@@ -33,8 +33,8 @@
       <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="735" column="29" selection-start-line="735" selection-start-column="29" selection-end-line="735" selection-end-column="29" />
+            <state relative-caret-position="476">
+              <caret line="452" column="216" selection-start-line="452" selection-start-column="216" selection-end-line="452" selection-end-column="216" />
             </state>
           </provider>
         </entry>
@@ -63,6 +63,7 @@
       <find>register</find>
       <find>id_transaksi_pengambilan</find>
       <find>get_id_transaksi_pembayaran</find>
+      <find>get_id_transaksi_pi</find>
     </findStrings>
     <replaceStrings>
       <replace>Enggar</replace>
@@ -93,9 +94,9 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="width" value="977" />
-    <option name="height" value="1053" />
+    <option name="x" value="-10" />
+    <option name="width" value="978" />
+    <option name="height" value="1055" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -255,13 +256,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1526545203638</updated>
-    </task>
-    <task id="LOCAL-00001" summary="add pinjaman">
-      <created>1530376361190</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1530376361191</updated>
     </task>
     <task id="LOCAL-00002" summary="add pinjaman">
       <created>1532682798210</created>
@@ -592,7 +586,21 @@
       <option name="project" value="LOCAL" />
       <updated>1534531076723</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Add function inquiry_pembayaran">
+      <created>1534531620108</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1534531620108</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Add function inquiry_pembayaran">
+      <created>1534531785641</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1534531785642</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -604,9 +612,9 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info active="true" anchor="bottom" x="859" y="62" width="1146" height="796" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.48666668" />
+      <window_info anchor="bottom" x="859" y="62" width="1146" height="796" id="Run" order="2" sideWeight="0.49946696" weight="0.48666668" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49271846" weight="0.396" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17073171" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17265725" />
       <window_info anchor="right" id="R Packages" order="3" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="R Graphics" order="3" />
@@ -624,29 +632,29 @@
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" weight="0.3297414" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.41854304" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="bottom" x="859" y="62" width="1146" height="796" id="Run" order="2" sideWeight="0.49946696" weight="0.48789346" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.41854304" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="R Graphics" order="4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" x="859" y="62" width="1146" height="796" id="Run" order="2" sideWeight="0.49946696" weight="0.48789346" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" weight="0.3297414" />
+      <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="R Packages" order="5" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" weight="0.3297414" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49271846" weight="0.400978" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50728154" side_tool="true" weight="0.400978" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" id="Database" order="6" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="Python Console" order="12" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -908,17 +916,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py" />
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="735" column="29" selection-start-line="735" selection-start-column="29" selection-end-line="735" selection-end-column="29" />
+        <state relative-caret-position="476">
+          <caret line="452" column="216" selection-start-line="452" selection-start-column="216" selection-end-line="452" selection-end-column="216" />
         </state>
       </provider>
     </entry>

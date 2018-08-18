@@ -450,7 +450,7 @@ def get_idtransaksi_pinjaman():
             res_data['response'] = 'OK'
             res_data['msg'] = 'UTI/PNJ'+str(datetime.datetime.today().strftime('%Y%m%d'))+str(jumlah_row+1)
 
-            q_is_exist = ("SELECT tb_anggota.id_anggota, tb_anggota.nama_anggota FROM `tb_anggota` where tb_anggota.`flag_active`='t' and tb_anggota.id_anggota not in (select id_anggota from tb_kredit) order by nama_anggota;")
+            q_is_exist = ("SELECT tb_anggota.id_anggota, tb_anggota.nama_anggota FROM `tb_anggota` where tb_anggota.`flag_active`='t' and tb_anggota.id_anggota not in (select id_anggota from tb_kredit where lunas = 0) order by nama_anggota;")
             curr.execute(q_is_exist)
             rs = curr.fetchall()
             res_data['anggota_arr'] = rs
@@ -573,7 +573,7 @@ def register_pengambilan():
             q_insert_tb_pengambilan = ("INSERT INTO `db_koperasi`.`tb_pengambilan` ( `id_transaksi_pengambilan`, `id_transaksi_peminjaman`, `tanggal_pengambilan`, `id_anggota`, `insert_by`) VALUES ( '"+id_transaksi_pengambilan+"', '"+id_transaksi_peminjaman+"', '"+tanggal_pengambilan+"', '"+id_anggota+"', '"+insert_by+"');")
             print (q_insert_tb_pengambilan)
             curr.execute(q_insert_tb_pengambilan)
-            q_update_tb_kredit = ("UPDATE `db_koperasi`.`tb_kredit` SET `id_pengambilan` = '"+id_transaksi_pengambilan+"', `tanggal_pengambilan` = '"+tanggal_pengambilan+"', `update_by` = '"+insert_by+"' WHERE `id_kredit` = '"+id_transaksi_peminjaman+"';")
+            q_update_tb_kredit = ("UPDATE `db_koperasi`.`tb_kredit` SET `id_pengambilan` = '"+id_transaksi_pengambilan+"', `tanggal_pengambilan` = '"+tanggal_pengambilan+"', `update_by` = '"+insert_by+"', sisa_pinjaman = jumlah_pinjaman, sisa_angsuran = lama_cicilan WHERE `id_kredit` = '"+id_transaksi_peminjaman+"';")
             print(q_update_tb_kredit)
             curr.execute(q_update_tb_kredit)
             db.commit()
