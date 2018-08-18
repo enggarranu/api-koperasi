@@ -538,7 +538,7 @@ def get_detail_pinjaman(id_anggota):
             db = connection.get_db()
             curr = db.cursor()
             q_is_exist = (
-                "SELECT tb_kredit.id_anggota, tb_anggota.nama_anggota, concat('Rp ', format(tb_kredit.jumlah_pinjaman,2)), concat('Rp ', format((simpanan_suka+simpanan_pokok+simpanan_wajib),2)) as saldo, id_kredit FROM `tb_anggota` join `tb_kredit` on tb_anggota.id_anggota = tb_kredit.id_anggota  where tb_kredit.`flag_active`='t' and tb_kredit.id_anggota = '"+id_anggota_+"' order by nama_anggota;")
+                "SELECT tb_kredit.id_anggota, tb_anggota.nama_anggota, concat('Rp ', format(tb_kredit.jumlah_pinjaman,2)), concat('Rp ', format((simpanan_suka+simpanan_pokok+simpanan_wajib),2)) as saldo, id_kredit FROM `tb_anggota` join `tb_kredit` on tb_anggota.id_anggota = tb_kredit.id_anggota  where tb_kredit.`flag_active`='t' and tb_kredit.lunas = 0 and tb_kredit.id_anggota = '"+id_anggota_+"' order by nama_anggota;")
             curr.execute(q_is_exist)
             rs = curr.fetchall()
             res_data['id_anggota'] = rs[0][0]
