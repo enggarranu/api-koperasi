@@ -497,7 +497,7 @@ def inquiry_pinjaman():
         if request.method == 'GET':
             db = connection.get_db()
             curr = db.cursor()
-            sql_inquiry = ("SELECT a.id_kredit, a. id_anggota, b.nama_anggota, concat('Rp ', format(b.saldo,2)), concat('Rp ', format(a.jumlah_pinjaman,2)), concat(a.bunga, '%'), concat(a.lama_cicilan, ' Bulan'), concat('Rp ', format(a.angsuran,2)), a.insert_date, a.insert_by FROM tb_kredit a JOIN ( SELECT id_anggota, nama_anggota, cast( simpanan_wajib AS SIGNED ) + cast( simpanan_suka AS SIGNED ) + cast( simpanan_pokok AS SIGNED ) saldo FROM tb_anggota ) b ON a.id_anggota = b.id_anggota")
+            sql_inquiry = ("SELECT a.id_kredit, a. id_anggota, b.nama_anggota, concat('Rp ', format(b.saldo,2)), concat('Rp ', format(a.jumlah_pinjaman,2)), concat(a.bunga, '%'), concat(a.lama_cicilan, ' Bulan'), concat('Rp ', format(a.angsuran,2)), a.insert_date, a.insert_by, a.sisa_angsuran, concat('Rp ',format(a.sisa_pinjaman,2)) FROM tb_kredit a JOIN ( SELECT id_anggota, nama_anggota, cast( simpanan_wajib AS SIGNED ) + cast( simpanan_suka AS SIGNED ) + cast( simpanan_pokok AS SIGNED ) saldo FROM tb_anggota ) b ON a.id_anggota = b.id_anggota")
             print (sql_inquiry)
             curr.execute(sql_inquiry)
             rs = curr.fetchall()
